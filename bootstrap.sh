@@ -28,7 +28,7 @@ echo "Installing git..."
 sudo apt-get install -y git >/dev/null
 
 # Ask for the location of the private Puppet repository
-read -e -p "Enter the location of the private Puppet repository: " -i "${PRIVATE_REPO_URL}" PRIVATE_REPO_URL
+read -e -p "Enter the location of the private Puppet repository: " -i "${PRIVATE_REPO_URL}" PRIVATE_REPO_URL </dev/tty
 
 # Give current user access to the private Puppet repository
 if [ ! -d ~/.ssh ]; then
