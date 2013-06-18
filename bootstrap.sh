@@ -42,7 +42,7 @@ fi
 # Ask for public key to be added as a deploy key to the private Puppet repository
 echo -e "Please add this public key as a deploy key at ${PRIVATE_REPO_URL}, then press any key to continue.\n"
 cat ~/.ssh/id_rsa.pub
-read -n 1 -s
+read -n 1 -s </dev/tty
 
 # Fetch private Puppet repository into current user's directory
 if [ ! -d ~/etc/puppet/.git ]; then
