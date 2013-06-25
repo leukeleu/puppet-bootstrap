@@ -52,4 +52,4 @@ fi
 
 # Bootstrap Puppet
 echo "Bootstrapping Puppet..."
-sudo puppet apply --modulepath=~/etc/puppet/modules ~/etc/puppet/manifests/init.pp
+sudo puppet apply --confdir=~/etc/puppet --modulepath=~/etc/puppet/modules ~/etc/puppet/manifests/init.pp
