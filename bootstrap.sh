@@ -50,8 +50,11 @@ if [ ! -d ~/etc/puppet/.git ]; then
   mkdir -p ~/etc/puppet && git clone ${PRIVATE_REPO_URL} ~/etc/puppet
 fi
 
-# Bootstrap Puppet
-echo "Bootstrapping Puppet..."
+# Adding aliases
+grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo "alias puppet-update='cd ~/etc/puppet/ && git pull'" >> ~/.bash_aliases
 grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo puppet apply --confdir=~/etc/puppet --modulepath=~/etc/puppet/modules ~/etc/puppet/manifests/init.pp'" >> ~/.bash_aliases
 source ~/.bash_aliases
+
+# Bootstrap Puppet
+echo "Bootstrapping Puppet..."
 puppet-apply
