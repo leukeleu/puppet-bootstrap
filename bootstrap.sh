@@ -52,4 +52,6 @@ fi
 
 # Bootstrap Puppet
 echo "Bootstrapping Puppet..."
-sudo puppet apply --confdir=~/etc/puppet --modulepath=~/etc/puppet/modules ~/etc/puppet/manifests/init.pp
+grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo puppet apply --confdir=~/etc/puppet --modulepath=~/etc/puppet/modules ~/etc/puppet/manifests/init.pp'" >> ~/.bash_aliases
+source ~/.bash_aliases
+puppet-apply
