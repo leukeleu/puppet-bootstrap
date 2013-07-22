@@ -3,6 +3,7 @@
 # Bootstrap Puppet on Ubuntu 12.04 LTS
 #
 set -e
+shopt -s expand_aliases
 
 # Load up the release information
 . /etc/lsb-release
