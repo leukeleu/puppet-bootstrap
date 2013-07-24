@@ -15,6 +15,11 @@ PRIVATE_REPO_URL="git@github.com:leukeleu/puppet-server-base.git"
 
 #------------------------------------------------------------------------------
 
+echo "Preparing system..."
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+
 # Install latest Puppet from (local) PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
