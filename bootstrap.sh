@@ -16,8 +16,8 @@ PRIVATE_REPO_URL="git@github.com:leukeleu/puppet-server-base.git"
 #------------------------------------------------------------------------------
 
 echo "Preparing system..."
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update >/dev/null
+sudo apt-get upgrade -y >/dev/null
 sudo apt-get install -y build-essential >/dev/null
 
 # Install latest Puppet from (local) PuppetLabs repo
