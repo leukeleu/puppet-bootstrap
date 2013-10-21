@@ -62,5 +62,4 @@ grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='s
 source ~/.bash_aliases
 
 # Bootstrap Puppet
-echo "Bootstrapping Puppet..."
-puppet-apply
+echo "Please reboot, and then run 'puppet-apply' with the correct branch of the private Puppet repository."
