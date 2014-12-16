@@ -3,7 +3,7 @@ Puppet bootstrap
 
 Requirements:
 
-- Ubuntu 12.04.2 LTS 64-bit
+- Ubuntu 12.04.5 LTS 64-bit
 
 
 Execute the following command as a user who is a sudoer:
