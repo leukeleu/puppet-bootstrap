@@ -33,6 +33,11 @@ sudo apt-get install -y puppet >/dev/null
 echo "Installing git..."
 sudo apt-get install -y git >/dev/null
 
+# Install librarian-puppet that is compatible with Ruby 1.8.7
+echo "Installing librarian..."
+sudo apt-get install --y rubygems >/dev/null
+sudo gem install librarian-puppet -v 1.5.0 >/dev/null
+
 # Ask for the location of the private Puppet repository
 read -e -p "Enter the location of the private Puppet repository: " -i "${PRIVATE_REPO_URL}" PRIVATE_REPO_URL </dev/tty
 
@@ -57,7 +62,7 @@ if [ ! -d ~/etc/puppet/.git ]; then
 fi
 
 # Add aliases
-grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo "alias puppet-update='cd ~/etc/puppet/ && git pull'" >> ~/.bash_aliases
+grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo "alias puppet-update='cd ~/etc/puppet/ && git pull && librarian-puppet'" >> ~/.bash_aliases
 grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo bash -c \"FACTER_user=\$USER puppet apply --confdir=~/etc/puppet ~/etc/puppet/manifests/init.pp\"'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
