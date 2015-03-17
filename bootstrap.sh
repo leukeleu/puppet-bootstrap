@@ -62,7 +62,7 @@ if [ ! -d ~/etc/puppet/.git ]; then
 fi
 
 # Add aliases
-grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo "alias puppet-update='cd ~/etc/puppet/ && git pull && librarian-puppet'" >> ~/.bash_aliases
+grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo -e $'alias puppet-update=\'bash -c \"cd ~/etc/puppet/ && (git pull -q || true) && librarian-puppet install --quiet && echo \\\"Done!\\\"\"\'' >> ~/.bash_aliases
 grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo bash -c \"FACTER_user=\$USER puppet apply --confdir=~/etc/puppet ~/etc/puppet/manifests/init.pp\"'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
