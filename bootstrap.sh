@@ -35,7 +35,7 @@ sudo apt-get install -y git >/dev/null
 
 # Install librarian-puppet that is compatible with Ruby 1.8.7
 echo "Installing librarian..."
-sudo apt-get install --y rubygems >/dev/null
+sudo apt-get install -y rubygems >/dev/null
 sudo gem install librarian-puppet -v 1.5.0 >/dev/null
 
 # Ask for the location of the private Puppet repository
