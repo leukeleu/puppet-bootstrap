@@ -14,7 +14,7 @@ Execute the following command as a user who is a sudoer:
 
 This will install git and Puppet, ask for a private Puppet repository, and bootstrap your system with it.
 
-Later on, you can login as the same user and perform the following commands to update you puppet configuration
+Later on, you can login as the same user and perform the following commands to update your puppet configuration
 
     $ puppet-update
     $ puppet-apply
