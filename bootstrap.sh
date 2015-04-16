@@ -8,8 +8,7 @@ shopt -s expand_aliases
 # Load up the release information
 . /etc/lsb-release
 
-REPO_DEB_URL="https://raw.github.com/leukeleu/puppet-bootstrap/master/apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
-# REPO_DEB_URL="https://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
+REPO_DEB_URL="https://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
 
 PRIVATE_REPO_URL="git@github.com:leukeleu/puppet-server-base.git"
 
@@ -21,7 +20,7 @@ sudo apt-get update >/dev/null
 sudo apt-get upgrade -y >/dev/null
 sudo apt-get install -y build-essential >/dev/null
 
-# Install latest Puppet from (local) PuppetLabs repo
+# Install latest Puppet from PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
 wget --output-document=${repo_deb_path} ${REPO_DEB_URL} 2>/dev/null
@@ -64,7 +63,7 @@ fi
 
 # Add aliases
 grep -q puppet-update ~/.bash_aliases 2> /dev/null || echo -e $'alias puppet-update=\'bash -c \"cd ~/etc/puppet/ && (git pull -q || true) && librarian-puppet install --quiet && echo \\\"Done!\\\"\"\'' >> ~/.bash_aliases
-grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo bash -c \"FACTER_user=\$USER puppet apply --confdir=~/etc/puppet ~/etc/puppet/manifests/init.pp\"'" >> ~/.bash_aliases
+grep -q puppet-apply ~/.bash_aliases 2> /dev/null || echo "alias puppet-apply='sudo bash -c \"FACTER_user=\$USER puppet apply --confdir=~/etc/puppet --modulepath=~/etc/puppet/modules/ops:~/etc/puppet/modules/dev:~/etc/puppet/modules/lib --manifest=~/etc/puppet/manifests ~/etc/puppet/manifests\"'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
 # Bootstrap Puppet
