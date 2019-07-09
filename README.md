@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Ubuntu 12.04.5 LTS 64-bit
+- Ubuntu 16.04 LTS 64-bit
 
 
 ## Installation

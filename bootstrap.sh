@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
-# Bootstrap Puppet on Ubuntu 12.04 or 14.04 LTS.
+# Bootstrap Puppet on Ubuntu 16.04 LTS.
 #
 set -e
 
 # Load up the release information
 . /etc/lsb-release
 
-REPO_DEB_URL="https://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
+REPO_DEB_URL="https://apt.puppetlabs.com/puppetlabs-release-pc1-${DISTRIB_CODENAME}.deb"
 
 PRIVATE_REPO_URL="git@github.com:leukeleu/puppet-server-base.git"
 
@@ -18,10 +18,6 @@ PRIVATE_REPO_URL="git@github.com:leukeleu/puppet-server-base.git"
 # Do the initial apt-get update
 echo "Initial apt-get update..."
 sudo apt-get update >/dev/null
-
-# Install wget if we have to (some older Ubuntu versions)
-echo "Installing wget..."
-sudo apt-get --yes install wget >/dev/null
 
 # Install the PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
@@ -36,17 +32,12 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get -y -o Dpkg::Options::="--force-confd
 
 echo "Puppet installed!"
 
-# Install RubyGems for the provider
-echo "Installing RubyGems..."
-if [ "$DISTRIB_CODENAME" == "precise" ]; then
-  sudo apt-get --yes install rubygems >/dev/null
-fi
-sudo gem install --no-ri --no-rdoc rubygems-update
-sudo update_rubygems >/dev/null
-
 #--------------------------------------------------------------------
 # Leukeleu custom bits
 #--------------------------------------------------------------------
+
+echo "Installing software-properties-common..."
+sudo apt-get -y install software-properties-common >/dev/null
 
 echo "Installing build-essentials..."
 sudo apt-get install -y build-essential >/dev/null
@@ -58,14 +49,7 @@ echo "Installing system updates..."
 sudo apt-get upgrade -y >/dev/null
 
 echo "Installing librarian-puppet..."
-if [ "$DISTRIB_CODENAME" == "precise" ]; then
-  # Install librarian-puppet that is compatible with Ruby 1.8.7
-  sudo gem install librarian-puppet -v 1.5.0 --no-ri --no-rdoc >/dev/null
-else
-  # Install the latest librarian-puppet
-  sudo apt-get install -y ruby-dev >/dev/null
-  sudo gem install librarian-puppet --no-ri --no-rdoc >/dev/null
-fi
+sudo gem install librarian-puppet -v 2.2.3 >/dev/null
 
 # Ask for the location of the private Puppet repository
 read -e -p "Enter the location of the private Puppet repository: " -i "${PRIVATE_REPO_URL}" PRIVATE_REPO_URL </dev/tty
